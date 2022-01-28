@@ -21,7 +21,6 @@ Anchor\n\n'
         self.in_file = os.path.abspath(os.path.join(self.path, self.in_file))
         self.save_as = os.path.abspath(os.path.join(self.path, self.FNAME))
         self.base = os.path.dirname(__file__)
-        self.save_as = os.path.abspath(os.path.join(self.base, self.FNAME))
         self.outfile = f"{self.save_as}.ics"
         self.loadCSV()
         self.calendarCreate()
