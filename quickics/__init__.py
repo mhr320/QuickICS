@@ -5,12 +5,12 @@ import os
 
 
 class QuickICS:
+
+    reminder_text = '**Reminder** Single line in csv:\n\n02/06/2022,16:00:00,1:30,\
+Anchor\n\n'
+
     def __init__(self):
-        self.in_file = input('\nThis is how your CSV File Should be formatted\n\n\
-date(02/06/2022),start_time(16:00:00),duration(1:30),location(Anchor)\n\n\
-So, a single line in your CSV file looks like this:\n\
-02/06/2022,16:00:00,1:30,Anchor\
- \n\nEnter CSV file -> ')
+        self.in_file = input(f'{QuickICS.reminder_text}Enter CSV file -> ')
         self.name = input('Enter Event Name -> ')
         self.ical = []
         self.events = []
