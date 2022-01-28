@@ -10,7 +10,8 @@ class QuickICS:
 date(02/06/2022),start_time(16:00:00),duration(1:30),location(Anchor)\n\n\
 So, a single line in your CSV file looks like this:\n\
 02/06/2022,16:00:00,1:30,Anchor\
-\n\nEnter CSV file -> ')
+ \n\nEnter CSV file -> ')
+        self.name = input('Enter Event Name -> ')
         self.ical = []
         self.events = []
         self.today = datetime.now()
@@ -19,8 +20,8 @@ So, a single line in your CSV file looks like this:\n\
         self.FNAME = f"Import_{self.today}"
         self.in_file = os.path.abspath(os.path.join(self.path, self.in_file))
         self.save_as = os.path.abspath(os.path.join(self.path, self.FNAME))
-        # self.base = os.path.dirname(__file__)
-        # self.save_as = os.path.abspath(os.path.join(self.base, self.FNAME))
+        self.base = os.path.dirname(__file__)
+        self.save_as = os.path.abspath(os.path.join(self.base, self.FNAME))
         self.outfile = f"{self.save_as}.ics"
         self.loadCSV()
         self.calendarCreate()
@@ -33,15 +34,15 @@ So, a single line in your CSV file looks like this:\n\
         return self.duration
 
     def loadCSV(self):
-        self.name = input('Enter Event Name -> ')
         with open(self.in_file, newline='') as f:
             r = csv.reader(f)
             for i in r:
-                self.date_time = f'{i[0]} {i[1]}'
-                self.dtstamp = datetime.strptime(self.date_time, '%m/%d/%Y %H:%M:%S')  # noqa: E501
-                self.duration = self.parseDuration(i[2])
-                self.location = vText(i[3])
-                self.ical.append((self.name, self.dtstamp, self.duration, self.location))  # noqa: E501
+                if i != []:
+                    self.date_time = f'{i[0]} {i[1]}'
+                    self.dtstamp = datetime.strptime(self.date_time, '%m/%d/%Y %H:%M:%S')  # noqa: E501
+                    self.duration = self.parseDuration(i[2])
+                    self.location = vText(i[3])
+                    self.ical.append((self.name, self.dtstamp, self.duration, self.location))  # noqa: E501
 
     def calendarCreate(self):
         for x, i in enumerate(self.ical):
@@ -64,5 +65,3 @@ So, a single line in your CSV file looks like this:\n\
 
 if __name__ == '__main__':
     QuickICS()
-
-#QuickICS('/home/michael/ball.csv')
