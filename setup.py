@@ -8,7 +8,7 @@ with open(here / 'README.md', 'r') as f:
 
 setup(
     name="QuickICS",
-    version="0.0.4",
+    version="0.0.5",
     author="M. Holbert Roberts",
     author_email="mhr320@gmail.com",
     description="quick way to convert a csv file of events for same type event to .ics file",
